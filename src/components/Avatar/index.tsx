@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
-import { Upload, Avatar as AntdAvatar } from 'antd';
-import './index.less';
+import React from 'react';
+import { Avatar as AntdAvatar } from 'antd';
 
-export const Avatar = ({
+type AvatarProps = {
+  avatarSrc?: string;
+  className?: string;
+  shape?: string;
+  size?: string;
+  };
+
+export const Avatar: React.FC<AvatarProps> = ({
   avatarSrc,
   className,
   shape = 'circle',
   size = 'default',
-}) => {
+  }) => {
   return (
     <div className={`avatar ${!avatarSrc ? 'avatar-hidden' : ''}`}>
       {avatarSrc ? (
-        // @ts-ignore
         <AntdAvatar
           className={className}
           src={avatarSrc}
-          shape={shape as any}
-          size={size as any}
+          shape={shape as 'circle' | 'square'}
+          size={size as 'large' | 'default' | 'small' | number}
         />
       ) : (
-        <span className="avatar-upload-tip">头像地址为空</span>
+        <span className="text-gray-400 text-sm">头像地址为空</span>
       )}
     </div>
   );

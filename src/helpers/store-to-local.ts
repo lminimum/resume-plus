@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import { message } from 'antd';
 import type { ResumeConfig } from '@/components/types';
 import { customAssign } from '@/helpers/customAssign';
-import _ from 'lodash-es';
+import * as _ from 'lodash-es';
 import { RESUME_INFO } from '@/data/resume';
 import { fetchResume } from './fetch-resume';
 import { intl } from '@/i18n';

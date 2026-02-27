@@ -4,7 +4,6 @@ import { Popover } from 'antd';
 import qs from 'query-string';
 import { FormattedMessage } from 'react-intl';
 import { getSearchObj } from '@/helpers/location';
-import './index.less';
 
 export function getMode() {
   const query = getSearchObj();

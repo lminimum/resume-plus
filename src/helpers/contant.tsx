@@ -10,7 +10,7 @@ import {
   ToolTwoTone,
   ScheduleTwoTone,
 } from '@ant-design/icons';
-import _ from 'lodash-es';
+import * as _ from 'lodash-es';
 import { intl } from '@/i18n';
 import type { ResumeConfig } from '@/components/types';
 

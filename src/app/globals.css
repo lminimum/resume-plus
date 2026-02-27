@@ -1,26 +1,191 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary-color: #2f5785;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Global Styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  margin: 0 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.page {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+}
+
+.btn-group {
+  margin-left: 12px;
+  display: block;
+}
+
+.btn-group .ant-btn {
+  display: block;
+  margin-top: 8px;
+  padding: 4px 8px;
+  width: 106px;
+  border-radius: 0 !important;
+}
+
+.box-size-info {
+  position: absolute;
+  transform: translate(-100%, 50%);
+  font-size: 12px;
+  line-height: 15px;
+  background: rgba(139, 195, 74, 0.39);
+  color: #009688;
+  letter-spacing: 1.2px;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 4px 0px;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgb(39, 63, 117);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+header .action-link {
+  margin: 0 4px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+header .action-link:hover {
+  cursor: pointer;
+}
+
+/* Footer Styles */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 24px;
+}
+
+footer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  background: rgb(39, 63, 117);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+footer a:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+footer .author {
+  margin: 0 4px;
+}
+
+/* Mode Switcher */
+.mode-switcher {
+  display: inline-flex;
+  align-items: center;
+}
+
+.mode-switcher .mode-item {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.mode-switcher .mode-item.active {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Language Switcher */
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+.language-switcher .lang {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+}
+
+.language-switcher .lang:hover,
+.language-switcher .lang.active {
+  color: rgba(255, 255, 255, 1);
+}
+
+.language-switcher .divider {
+  margin: 0 4px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column-reverse;
+  }
+
+  .btn-group {
+    margin-left: 0px;
+  }
+
+  .btn-group .ant-btn {
+    margin-top: 0;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    display: inline-block;
+  }
+
+  .btn-group .ant-btn:not(.btn-upload):last-of-type {
+    margin-right: 0px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (max-width: 414px) {
+  .page {
+    padding: 0;
+  }
+
+  .btn-group,
+  .box-size-info {
+    display: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+  }
+
+  body,
+  body .page {
+    padding: 0;
+    margin: 0;
+  }
+
+  .resume-alert,
+  .btn-group,
+  .box-size-info,
+  header,
+  footer {
+    display: none !important;
+  }
 }

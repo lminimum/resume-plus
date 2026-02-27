@@ -59,7 +59,7 @@ Organize imports in this order:
 // Example
 import React, { useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
-import _ from 'lodash-es';
+import * as _ from 'lodash-es';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Header from '@/layout/header';
 import type { ResumeConfig } from '@/components/types';

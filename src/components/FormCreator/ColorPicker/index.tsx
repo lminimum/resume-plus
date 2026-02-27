@@ -2,8 +2,7 @@ import { Dropdown } from 'antd';
 import React, { useMemo, useCallback } from 'react';
 import { SketchPicker } from 'react-color';
 import cx from 'classnames';
-import _ from 'lodash-es';
-import './index.less';
+import * as _ from 'lodash-es';
 
 const DEFAULT_COLORS = [
   '#F4664A',

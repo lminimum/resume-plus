@@ -2,7 +2,6 @@ import React from 'react';
 import { ReactSVG } from 'react-svg';
 import cx from 'classnames';
 import { useIntl } from 'react-intl';
-import './index.less';
 
 type Props = {
   template: string;

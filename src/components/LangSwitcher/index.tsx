@@ -4,7 +4,6 @@ import { Popover } from 'antd';
 import qs from 'query-string';
 import { getLanguage } from '@/i18n';
 import { getMode } from '@/hooks/useModeSwitcher';
-import './index.less';
 import { useIntl } from 'react-intl';
 
 export const LangSwitcher = ({ className }: { className?: string }) => {

@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import _ from 'lodash-es';
+import * as _ from 'lodash-es';
 import type { ResumeConfig } from '@/components/types';
 import { customAssign } from './customAssign';
 

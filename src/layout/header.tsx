@@ -1,9 +1,10 @@
+'use client';
+
 import React from 'react';
 import { LangSwitcher } from '@/components/LangSwitcher';
 import { getMode, useModeSwitcher } from '@/hooks/useModeSwitcher';
 import { getSearchObj } from '@/helpers/location';
 import { FormattedMessage } from 'react-intl';
-import './header.less';
 
 const Header: React.FC = () => {
   const mode = getMode();

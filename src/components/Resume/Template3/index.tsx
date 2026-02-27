@@ -12,11 +12,10 @@ import {
   HeartFilled,
   CrownFilled,
 } from '@ant-design/icons';
-import _ from 'lodash-es';
+import * as _ from 'lodash-es';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getDefaultTitleNameMap } from '@/data/constant';
 import type { ResumeConfig, ThemeConfig } from '../../types';
-import './index.less';
 
 type Props = {
   value: ResumeConfig;
@@ -293,80 +292,80 @@ export const Template3: React.FC<Props> = props => {
       <div className="main-info">
         {workExpList?.length
           ? wrapper({
-              id: 'work-experience',
-              title: titleNameMap?.workExpList,
-              color: theme.color,
-            })(
-              <div className="section section-work-exp">
-                {_.map(workExpList, (work, idx) => {
-                  const [start = null, end = null] =
-                    typeof work.work_time === 'string'
-                      ? `${work.work_time || ''}`.split(',')
-                      : work.work_time;
-                  return work ? (
-                    <div className="section-item" key={idx.toString()}>
-                      <div className="section-info">
-                        <b className="info-name">
-                          {work.company_name}
-                          <span className="sub-info">
-                            {work.department_name}
-                          </span>
-                        </b>
-                        <span className="info-time">
-                          {start}
-                          {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
+            id: 'work-experience',
+            title: titleNameMap?.workExpList,
+            color: theme.color,
+          })(
+            <div className="section section-work-exp">
+              {_.map(workExpList, (work, idx) => {
+                const [start = null, end = null] =
+                  typeof work.work_time === 'string'
+                    ? `${work.work_time || ''}`.split(',')
+                    : work.work_time;
+                return work ? (
+                  <div className="section-item" key={idx.toString()}>
+                    <div className="section-info">
+                      <b className="info-name">
+                        {work.company_name}
+                        <span className="sub-info">
+                          {work.department_name}
                         </span>
-                      </div>
-                      <div className="work-description">{work.work_desc}</div>
+                      </b>
+                      <span className="info-time">
+                        {start}
+                        {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
+                      </span>
                     </div>
-                  ) : null;
-                })}
-              </div>
-            )
+                    <div className="work-description">{work.work_desc}</div>
+                  </div>
+                ) : null;
+              })}
+            </div>
+          )
           : null}
 
         {projectList?.length
           ? wrapper({
-              id: 'skill',
-              title: titleNameMap?.projectList,
-              color: theme.color,
-            })(
-              <div className="section section-project">
-                {_.map(projectList, (project, idx) =>
-                  project ? (
-                    <div className="section-item" key={idx.toString()}>
-                      <div className="section-info">
-                        <b className="info-name">
-                          {project.project_name}
-                          <span className="info-time">
-                            {project.project_time}
-                          </span>
-                        </b>
-                        {project.project_role && (
-                          <Tag color={theme.tagColor}>
-                            {project.project_role}
-                          </Tag>
-                        )}
-                      </div>
-                      <div className="section-detail">
-                        <b>
-                          <FormattedMessage id="项目描述" />：
-                        </b>
-                        <span>{project.project_desc}</span>
-                      </div>
-                      <div className="section-detail">
-                        <b>
-                          <FormattedMessage id="主要工作" />：
-                        </b>
-                        <span className="project-content">
-                          {project.project_content}
+            id: 'skill',
+            title: titleNameMap?.projectList,
+            color: theme.color,
+          })(
+            <div className="section section-project">
+              {_.map(projectList, (project, idx) =>
+                project ? (
+                  <div className="section-item" key={idx.toString()}>
+                    <div className="section-info">
+                      <b className="info-name">
+                        {project.project_name}
+                        <span className="info-time">
+                          {project.project_time}
                         </span>
-                      </div>
+                      </b>
+                      {project.project_role && (
+                        <Tag color={theme.tagColor}>
+                          {project.project_role}
+                        </Tag>
+                      )}
                     </div>
-                  ) : null
-                )}
-              </div>
-            )
+                    <div className="section-detail">
+                      <b>
+                        <FormattedMessage id="项目描述" />：
+                      </b>
+                      <span>{project.project_desc}</span>
+                    </div>
+                    <div className="section-detail">
+                      <b>
+                        <FormattedMessage id="主要工作" />：
+                      </b>
+                      <span className="project-content">
+                        {project.project_content}
+                      </span>
+                    </div>
+                  </div>
+                ) : null
+              )}
+            </div>
+          )
           : null}
       </div>
     </div>

@@ -10,6 +10,5 @@ export function getLanguage(): string {
     (query.lang as string) ||
     (windowIsDefined() ? navigator?.language : 'zh-CN') ||
     'zh-CN';
-  typeof document !== 'undefined' && document.body.setAttribute('lang', lang);
   return lang;
 }

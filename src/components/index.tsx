@@ -1,9 +1,9 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { Button, Affix, Upload, Spin, message, Alert, Modal } from 'antd';
 import type { RcFile } from 'antd/lib/upload';
-import _ from 'lodash-es';
+import * as _ from 'lodash-es';
 import qs from 'query-string';
-import jsonUrl from 'json-url';
+import LZString from 'lz-string';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getLanguage } from '@/i18n';
 import { useModeSwitcher } from '@/hooks/useModeSwitcher';
@@ -19,9 +19,6 @@ import { Drawer } from './Drawer';
 import { Resume } from './Resume';
 import type { ResumeConfig, ThemeConfig } from './types';
 
-import './index.less';
-
-const codec = jsonUrl('lzma');
 
 export const Page: React.FC = () => {
   const lang = getLanguage();
@@ -113,9 +110,14 @@ export const Page: React.FC = () => {
         });
     } else {
       if (query.data) {
-        codec.decompress(query.data).then(data => {
-          store(JSON.parse(data));
-        });
+        try {
+          const data = LZString.decompressFromEncodedURIComponent(query.data as string);
+          if (data) {
+            store(JSON.parse(data));
+          }
+        } catch (e) {
+          console.error('Failed to decompress data', e);
+        }
       } else {
         getConfig(lang, branch, user).then(data => {
           store(data);
@@ -221,13 +223,12 @@ export const Page: React.FC = () => {
 
   const handleSharing = () => {
     const fullConfig = getConfigJson();
-    codec.compress(fullConfig).then(data => {
-      const url = new URL(window.location.href);
-      url.searchParams.set('data', data);
+    const data = LZString.compressToEncodedURIComponent(fullConfig);
+    const url = new URL(window.location.href);
+    url.searchParams.set('data', data);
 
-      console.log('sharing url', url.toString());
-      copyToClipboard(url.toString());
-    });
+    console.log('sharing url', url.toString());
+    copyToClipboard(url.toString());
   };
 
   return (
@@ -258,9 +259,8 @@ export const Page: React.FC = () => {
                     {`${query.user || 'visiky'}'s resumeInfo`}
                   </span>
                   <span>
-                    {`（https://github.com/${query.user || 'visiky'}/${
-                      query.user || 'visiky'
-                    }/blob/${query.branch || 'master'}/resume.json）`}
+                    {`（https://github.com/${query.user || 'visiky'}/${query.user || 'visiky'
+                      }/blob/${query.branch || 'master'}/resume.json）`}
                   </span>
                 </span>
               </span>

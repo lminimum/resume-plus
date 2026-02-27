@@ -1,6 +1,5 @@
 import React from 'react';
 import { GithubFilled } from '@ant-design/icons';
-import './footer.less';
 import { getSearchObj } from '@/helpers/location';
 
 const Footer: React.FC = () => {
